@@ -1,4 +1,4 @@
-import { Product } from '@/lib/types/types';
+import { Product } from '@/lib/types';
 import ProductCard from '../product-card';
 
 interface Props {

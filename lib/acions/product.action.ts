@@ -1,23 +1,13 @@
 'use server';
-import { PrismaClient } from '@prisma/client';
-import { Product } from '../types/types';
+import { prisma } from '@/db/prisma';
 import { convertToPlainObject } from '../utils';
 import { LATEST_PRODUCTS_LIMIT } from '../constants';
 
-export async function getLatestProducts(): Promise<Product[]> {
-  const prisma = new PrismaClient();
-
+export async function getLatestProducts() {
   const data = await prisma.product.findMany({
     take: LATEST_PRODUCTS_LIMIT,
     orderBy: { createdAt: 'desc' },
   });
 
-  // Transform `Decimal` values to numbers
-  const transformedData = data.map(product => ({
-    ...product,
-    price: product.price.toNumber(),
-    rating: product.rating.toNumber(),
-  }));
-
-  return convertToPlainObject(transformedData);
+  return convertToPlainObject(data);
 }

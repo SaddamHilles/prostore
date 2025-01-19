@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Product } from '@/lib/types/types';
+import { Product } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductPrice from '../product-price';

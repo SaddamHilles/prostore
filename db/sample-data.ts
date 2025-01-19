@@ -1,4 +1,4 @@
-import { SampleData } from '@/lib/types/types';
+import { SampleData } from '@/lib/types';
 
 const sampleData: SampleData = {
   products: [
