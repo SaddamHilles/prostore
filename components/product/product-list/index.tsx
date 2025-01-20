@@ -6,6 +6,7 @@ interface Props {
   title?: string;
   limit?: number;
 }
+
 const ProductList = ({ data, title, limit = data.length }: Props) => {
   return (
     <div className='my-10'>

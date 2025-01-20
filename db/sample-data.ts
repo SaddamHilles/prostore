@@ -1,6 +1,4 @@
-import { SampleData } from '@/lib/types';
-
-const sampleData: SampleData = {
+const sampleData = {
   products: [
     {
       name: 'Polo Sporting Stretch Shirt',
