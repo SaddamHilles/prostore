@@ -7,8 +7,8 @@ export const currency = z
     value => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(Number(value))),
     'Price must have exactly two decimal places',
   );
-// Schema for inserting products
 
+// Schema for inserting products
 export const insertProductSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   slug: z.string().min(3, 'Slug must be at least 3 characters'),
@@ -21,3 +21,24 @@ export const insertProductSchema = z.object({
   banner: z.string().nullable(),
   price: currency,
 });
+
+// Schema for signing users in
+export const signInFormSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 charaters'),
+});
+
+// Schema for signing us a user
+export const signUpFormSchema = z
+  .object({
+    name: z.string().min(3, ' Name must be at least 3 characters'),
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(6, 'Password must be at least 6 charaters'),
+    confirmPassword: z
+      .string()
+      .min(6, 'confirm password must be at least 6 charaters'),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
